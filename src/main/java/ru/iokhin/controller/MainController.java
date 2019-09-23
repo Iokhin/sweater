@@ -58,7 +58,7 @@ public class MainController {
         message.setUser(user);
         message.setTag(tag);
         message.setText(text);
-        if (file != null) {
+        if (file != null && !file.getOriginalFilename().isEmpty()) {
             File uploadDir = new File(path);
             if (!uploadDir.exists()) {
                 if (uploadDir.mkdir())

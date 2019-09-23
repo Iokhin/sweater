@@ -1,10 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<#import './parts/common.ftl' as c>
+<@c.page>
     <form action="/logout" method="post">
         <input type="submit" value="Sign Out"/>
         <input type="hidden" name="_csrf" value="${_csrf.token}">
@@ -44,8 +39,7 @@
                 </div>
             </#if>
         </div>
-        <#else>
+    <#else>
         <div><code>NO MESSAGES</code></div>
     </#list>
-</body>
-</html>
+</@c.page>
