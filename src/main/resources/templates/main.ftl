@@ -1,10 +1,5 @@
 <#import './parts/common.ftl' as c>
 <@c.page>
-    <form action="/logout" method="post">
-        <input type="submit" value="Sign Out"/>
-        <input type="hidden" name="_csrf" value="${_csrf.token}">
-    </form>
-    <a href="/user"><code>USER LIST</code></a>
     <div>
         <label for="message-add-form">Add new message</label>
         <form action="/message-add" id="message-add-form" method="post" enctype="multipart/form-data">
