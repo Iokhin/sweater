@@ -1,5 +1,6 @@
 package ru.iokhin.domain;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import ru.iokhin.domain.enumerated.Role;

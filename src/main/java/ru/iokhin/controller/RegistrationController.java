@@ -1,6 +1,7 @@
 package ru.iokhin.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +18,9 @@ public class RegistrationController {
     @Autowired
     private UserRepo userRepo;
 
+    @Autowired
+    private BCryptPasswordEncoder encoder;
+
     @GetMapping("/registration")
     public String registration() {
         return "registration";
@@ -29,6 +33,7 @@ public class RegistrationController {
             return "registration";
         }
 //        user.setId(UUID.randomUUID().toString());
+        user.setPassword(encoder.encode(user.getPassword()));
         user.setActive(true);
         user.setRoles(Collections.singleton(Role.USER));
         userRepo.save(user);
