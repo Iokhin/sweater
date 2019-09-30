@@ -13,7 +13,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="/main">Messages</a>
             </li>
-            <#if isAdmin>
+            <#if known>
                 <li class="nav-item">
                     <a class="nav-link" href="/user">User List</a>
                 </li>
