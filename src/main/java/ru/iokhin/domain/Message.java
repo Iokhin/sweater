@@ -1,6 +1,9 @@
 package ru.iokhin.domain;
 
+import org.hibernate.validator.constraints.Length;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.UUID;
 
 @Entity
@@ -8,6 +11,8 @@ public class Message {
     @Id
     private String id = UUID.randomUUID().toString();
 
+    @NotBlank(message = "Please fill the message")
+    @Length(max = 2048, message = "Message to long (more then 2KB")
     private String text;
 
     private String tag;

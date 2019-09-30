@@ -12,7 +12,14 @@
     <div class="collapse my-2" id="collapseArea">
         <form action="/message-add" id="message-add-form" method="post" enctype="multipart/form-data">
             <div class="form-group">
-                <input class="form-control" type="text" name="text" placeholder="Message text...">
+                <input class="form-control ${(textError??)?string('is-invalid', '')}"
+                       value="<#if message??>${message.text}</#if>"
+                       type="text" name="text" placeholder="Message text...">
+                <#if textError??>
+                    <div class="invalid-feedback">
+                        ${textError}
+                    </div>
+                </#if>
             </div>
             <div class="form-group">
                 <input class="form-control" type="text" name="tag" placeholder="Message tag..">

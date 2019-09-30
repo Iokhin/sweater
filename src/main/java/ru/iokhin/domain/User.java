@@ -5,6 +5,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import ru.iokhin.domain.enumerated.Role;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import java.util.Collection;
 import java.util.Set;
 import java.util.UUID;
@@ -15,9 +17,15 @@ public class User implements UserDetails {
     @Id
     private String id = UUID.randomUUID().toString();
 
+    @NotBlank(message = "Username can't be empty")
     private String username;
 
+    @NotBlank(message = "Password can't be empty")
     private String password;
+
+    @Transient
+    @NotBlank(message = "Password confirmation can't be empty")
+    private String password2;
 
     private boolean active;
 
@@ -26,6 +34,8 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Set<Role> roles;
 
+    @Email(message = "Email is not correct")
+    @NotBlank(message = "Email can't be empty")
     private String email;
 
     private String activationCode;
@@ -113,5 +123,13 @@ public class User implements UserDetails {
 
     public void setActivationCode(String activationCode) {
         this.activationCode = activationCode;
+    }
+
+    public String getPassword2() {
+        return password2;
+    }
+
+    public void setPassword2(String password2) {
+        this.password2 = password2;
     }
 }
