@@ -55,9 +55,9 @@ public class MainController {
     @PostMapping("/message-add")
     public String messageAdd(@AuthenticationPrincipal User user,
                              @Valid Message message,
-                             @RequestParam("file") MultipartFile file,
                              BindingResult bindingResult,
-                             Model model) throws IOException {
+                             Model model,
+                             @RequestParam("file") MultipartFile file) throws IOException {
         message.setUser(user);
         if (bindingResult.hasErrors()) {
             Map<String, String> errors = ControllerUtil.getErrors(bindingResult);
@@ -75,6 +75,7 @@ public class MainController {
                 file.transferTo(new File(path + "/" + resultFilename));
                 message.setFilename(resultFilename);
             }
+            model.addAttribute("message", null);
             messageRepo.save(message);
         }
         model.addAttribute("messages", messageRepo.findAll());

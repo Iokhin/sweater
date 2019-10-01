@@ -12,9 +12,11 @@ public class Message {
     private String id = UUID.randomUUID().toString();
 
     @NotBlank(message = "Please fill the message")
-    @Length(max = 2048, message = "Message to long (more then 2KB")
+    @Length(max = 2048, message = "Message to long (more than 2KB")
     private String text;
 
+    @NotBlank(message = "Please fill the tag")
+    @Length(max = 255, message = "Tag to long (more than 32B")
     private String tag;
 
     private String filename;

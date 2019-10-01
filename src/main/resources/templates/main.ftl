@@ -2,14 +2,14 @@
 <@c.page>
     <form method="get" action="/main" class="form-inline mb-2">
         <div class="form-group mr-2">
-            <input type="text" name="tag" value="${filter}" class="form-control" placeholder="Enter a tag to filter..">
+            <input type="text" name="tag" value="<#if filter??>${filter}</#if>" class="form-control" placeholder="Enter a tag to filter..">
         </div>
         <button type="submit" class="btn btn-primary">Filter</button>
     </form>
     <a class="btn btn-primary" data-toggle="collapse" href="#collapseArea" role="button" aria-expanded="false" aria-controls="collapseArea">
         Add message
     </a>
-    <div class="collapse my-2" id="collapseArea">
+    <div class="collapse <#if message??>show</#if> my-2" id="collapseArea">
         <form action="/message-add" id="message-add-form" method="post" enctype="multipart/form-data">
             <div class="form-group">
                 <input class="form-control ${(textError??)?string('is-invalid', '')}"
@@ -22,7 +22,13 @@
                 </#if>
             </div>
             <div class="form-group">
-                <input class="form-control" type="text" name="tag" placeholder="Message tag..">
+                <input class="form-control ${(tagError??)?string('is-invalid', '')}" type="text" name="tag"
+                       placeholder="Message tag.." value="<#if message??>${message.tag}</#if>">
+                <#if tagError??>
+                    <div class="invalid-feedback">
+                        ${tagError}
+                    </div>
+                </#if>
             </div>
             <div class="custom-file">
                 <input type="file" class="custom-file-input" id="customFile" name="file">
