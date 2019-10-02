@@ -1,7 +1,4 @@
 <#macro login path isRegisterForm>
-    <#if message??>
-        <div>${message}</div>
-    </#if>
     <form action="/${path}" method="post">
         <div class="form-group row">
             <label for="username" class="col-sm-2 col-form-label">Username</label>
@@ -51,6 +48,14 @@
                         </div>
                     </#if>
                 </div>
+            </div>
+            <div>
+                <div class="g-recaptcha mb-2" data-sitekey="6Ld5drsUAAAAANzFwdyglEsLjwpOzM2cbBCoDw7w"></div>
+                <#if recaptchaError??>
+                    <div class="alert alert-danger col-sm-3" role="alert">
+                        ${recaptchaError}
+                    </div>
+                </#if>
             </div>
         </#if>
         <input type="hidden" name="_csrf" value="${_csrf.token}">
