@@ -22,6 +22,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/user/profile">Profile</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/user-messages/${currentUserId}">My messages</a>
+                </li>
             </#if>
         </ul>
         <div class="navbar-text mr-3">${name}</div>
